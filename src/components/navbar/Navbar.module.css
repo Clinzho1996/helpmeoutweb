@@ -1,0 +1,47 @@
+.container {
+  padding: 2% 6%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  object-fit: contain;
+}
+
+.work {
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.work a {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.start a {
+  color: #120b48;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 968px) {
+  .container {
+    padding: 2%;
+  }
+
+  .logo img {
+    width: 50%;
+    height: auto;
+  }
+
+  .start a,
+  .work a {
+    font-size: 12px;
+  }
+}
