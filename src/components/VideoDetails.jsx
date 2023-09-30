@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
@@ -7,11 +7,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { Box, Button, Modal } from "@mui/material";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import axios from "axios";
 
-function VideoDetailsCard({ video }) {
+function VideoDetailsCard() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [videoBlob, setVideoBlob] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const videoId = "65180ebe13e8d9db68ab557f";
+
+  useEffect(() => {
+    // Fetch video URL from the API
+    axios
+      .get(`https://vidrec.onrender.com/api/videos/${videoId}`)
+      .then((response) => {
+        const videoBlob = response.data;
+        setVideoBlob(videoBlob);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching video details:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  // Check if 'videoUrl' exists and is not undefined
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <div key={video.id}>
-      <Navbar />
+    <div>
       <div className={styles.container}>
         <Modal
           open={open}
@@ -109,7 +137,14 @@ function VideoDetailsCard({ video }) {
           </div>
         </div>
         <div className={styles.video}>
-          <video src="/screen-recording.webm" controls />
+          {videoBlob ? (
+            <video controls>
+              <source src={URL.createObjectURL(videoBlob)} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <p>No video available</p>
+          )}
           <h2>Transcript</h2>
         </div>
       </div>
@@ -125,7 +160,6 @@ function VideoDetailsCard({ video }) {
           </span>
         </center>
       </div>
-      <Footer />
     </div>
   );
 }
