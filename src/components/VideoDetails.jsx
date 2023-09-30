@@ -1,12 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import { Box, Button, Modal } from "@mui/material";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { FaTelegramPlane } from "react-icons/fa";
 import axios from "axios";
 
 function VideoDetailsCard() {
@@ -56,11 +55,10 @@ function VideoDetailsCard() {
                 onClick={handleClose}
               />
               <center>
-                <Image
-                  src={"/success.png"}
-                  width={300}
-                  height={200}
-                  alt="success"
+                <FaTelegramPlane
+                  size={150}
+                  className={styles.fat}
+                  color="#A24EB5"
                 />
                 <p>
                   Your video link has been sent to{" "}

@@ -209,8 +209,10 @@
   right: 50px;
   cursor: pointer;
 }
-.popup img {
+
+.popup .fat {
   object-fit: contain;
+  margin-top: 40px;
 }
 
 .popup p {
