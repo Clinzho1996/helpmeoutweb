@@ -76,6 +76,7 @@
   padding: 10px;
   border-radius: 6px;
   color: #000;
+  outline: none;
 }
 
 .loading {
@@ -93,3 +94,5 @@
   font-size: 34px;
   font-weight: 600;
 }
+
+
