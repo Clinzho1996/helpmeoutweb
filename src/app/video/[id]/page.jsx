@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
