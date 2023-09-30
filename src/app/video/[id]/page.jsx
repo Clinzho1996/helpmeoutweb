@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import axios from "axios";
 
 function VideoDetails({ params }) {
   const [video, setVideo] = useState(null);
@@ -35,10 +36,10 @@ function VideoDetails({ params }) {
       }
     };
     fetchVideoDetails();
-  }, [id]);
+  }, [videoId]);
 
   // Check if 'id' exists and is not undefined
-  if (id === undefined) {
+  if (videoId === undefined) {
     return <p>Loading...</p>;
   }
 
