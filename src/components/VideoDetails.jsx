@@ -72,7 +72,12 @@ function VideoDetailsCard() {
                   Would you need to view this video later? <br />
                   Save to your account now!
                 </h2>
-                <button>Save Video</button> <br />
+
+                <Link href="/">
+                  <button>Save Video</button>
+                </Link>
+
+                <br />
                 <span className={styles.link}>
                   Don't have an account?{" "}
                   <Link href="/register">Create account</Link>

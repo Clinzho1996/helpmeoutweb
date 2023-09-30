@@ -245,6 +245,10 @@
   cursor: pointer;
 }
 
+.popup button a {
+  color: #fff;
+}
+
 .popup .link {
   font-size: 16px;
   color: #7e7e7e;

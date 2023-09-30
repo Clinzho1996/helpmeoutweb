@@ -1,0 +1,95 @@
+.container {
+  padding: 2% 6%;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30%;
+  width: 100%;
+  margin-top: 50px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.register h2 {
+  font-size: 28px;
+}
+
+.register p {
+  font-size: 14px;
+  color: gray;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.register .social {
+  display: flex;
+  flex-direction: column;
+}
+
+.social .socialBtn {
+  display: flex;
+  flex-direction: column;
+}
+
+.social .socialBtn button {
+  background-color: #fff;
+  border: 1px solid #000;
+  margin-top: 20px;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.social img {
+  object-fit: contain;
+}
+
+.register form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 400px !important;
+}
+
+.register form button {
+  background-color: #120b48;
+  padding: 15px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.register form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  color: #000;
+}
+
+.loading {
+  height: 100vh;
+  background-color: #fff;
+  color: #120b48;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.loading p {
+  padding-top: 10%;
+  font-size: 34px;
+  font-weight: 600;
+}

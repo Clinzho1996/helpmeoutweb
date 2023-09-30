@@ -1,134 +1,152 @@
-"use client";
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import React from "react";
 import styles from "./page.module.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
-import Image from "next/image";
 import Link from "next/link";
-import { Box, Button, Modal, Typography } from "@mui/material";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import Image from "next/image";
+import { FaLocationArrow } from "react-icons/fa";
 
 function Home() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   return (
     <div>
       <Navbar />
       <div className={styles.container}>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <center>
-            <Box className={styles.popup}>
-              <AiOutlineCloseCircle
-                className={styles.close}
-                size={30}
-                color="#120B48"
-                onClick={handleClose}
-              />
-              <center>
-                <Image
-                  src={"/success.png"}
-                  width={300}
-                  height={200}
-                  alt="success"
-                />
-                <p>
-                  Your video link has been sent to{" "}
-                  <span>johnmark@gmail.com</span>
-                </p>
-                <h2>
-                  Would you need to view this video later? <br />
-                  Save to your account now!
-                </h2>
-                <button>Save Video</button> <br />
-                <span className={styles.link}>
-                  Don't have an account?{" "}
-                  <Link href="/register">Create account</Link>
-                </span>
-              </center>
-            </Box>
-          </center>
-        </Modal>
-        <div className={styles.info}>
-          <h2>Your video is ready</h2>
-          <form>
-            <p>Name</p>
-            <div>
-              <input
-                className={styles.text}
-                type="text"
-                placeholder="untitled_video_20233509"
-              />
-              <Image src={"/edit.png"} width={30} height={30} alt="edit" />
-            </div>
-            <div className={styles.email}>
-              <input
-                className={styles.emailText}
-                type="email"
-                placeholder="enter email of receiver"
-              />
-              <Button onClick={handleOpen}> Send</Button>
-            </div>
-          </form>
-
-          <div className={styles.videoContainer}>
-            <p>Video Url</p>
-            <div className={styles.videoUrl}>
-              <p>https://www.helpmeout/Untitled_Video_20232509</p>
-              <button>
-                <Image src={"/copy.png"} width={30} height={30} alt="copy" />{" "}
-                Copy
-              </button>
-            </div>
-          </div>
-
-          <div className={styles.shareContainer}>
-            <p>Share your video</p>
-            <div className={styles.shareBtn}>
-              <Image
-                src={"/facebook.png"}
-                width={200}
-                height={50}
-                alt="facebook"
-              />
-              <Image
-                src={"/whatsapp.png"}
-                width={200}
-                height={50}
-                alt="whatsapp"
-              />
-              <Image
-                src={"/telegram.png"}
-                width={200}
-                height={50}
-                alt="telegram"
-              />
-            </div>
-          </div>
+        <div className={styles.main}>
+          <h2>
+            Show them <br /> Don't just tell
+          </h2>
+          <p>
+            Help your friends and loved ones by creating and sending videos on
+            how to get things done on a website.
+          </p>
+          <Link href="/register">
+            Install HelpMeOut <FaLocationArrow />
+          </Link>
         </div>
-        <div className={styles.video}>
-          <video src="/screen-recording.webm" controls />
-          <h2>Transcript</h2>
+        <div className={styles.hero}>
+          <div>
+            <Image src={"/bg.png"} width={300} height={200} alt="banner" />{" "}
+            <br /> <br />
+            <Image src={"/bg2.png"} width={300} height={200} alt="banner" />
+          </div>
+          <div className={styles.innerGrid}>
+            <Image
+              className={styles.grid}
+              src={"/grid.png"}
+              width={300}
+              height={200}
+              alt="banner"
+            />
+            <Image
+              className={styles.gridImage}
+              src={"/bg3.png"}
+              width={300}
+              height={400}
+              alt="banner"
+            />
+          </div>
         </div>
       </div>
-      <div className={styles.preFooter}>
+      <div className={styles.divider}>
         <center>
-          <h2>
-            To ensure the availability and privacy of your video, <br /> we
-            recommend saving it to your account.
-          </h2>
-          <button>Save Video</button> <br />
-          <span>
-            Don't have an account? <Link href="/register">Create account</Link>
-          </span>
+          <h2>Features</h2>
+          <p>Key Highlights of Our Extension</p>
         </center>
+      </div>
+      <div className={styles.features}>
+        <div className={styles.wrap}>
+          <div className={styles.detailFeature}>
+            <div className={styles.image}>
+              <Image src={"/rec.png"} width={40} height={40} alt="recording" />
+            </div>
+            <div className={styles.inner}>
+              <h2>Simple Screen Recording</h2>
+              <p>
+                Effortless screen recording for everyone. Record with ease, no
+                tech expertise required.
+              </p>
+            </div>
+          </div>
+          <div className={styles.detailFeature}>
+            <div className={styles.image}>
+              <Image src={"/map.png"} width={40} height={40} alt="recording" />
+            </div>
+            <div className={styles.inner}>
+              <h2>Easy-to-Share URL</h2>
+              <p>
+                Share your recordings instantly with a single link. No
+                attachments, no downloads.
+              </p>
+            </div>
+          </div>
+          <div className={styles.detailFeature}>
+            <div className={styles.image}>
+              <Image src={"/rev.png"} width={40} height={40} alt="recording" />
+            </div>
+            <div className={styles.inner}>
+              <h2>Revisit Recordings</h2>
+              <p>
+                Access and review your past content effortlessly. Your
+                recordings, always at your fingertips.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <Image src={"/video.png"} width={600} height={400} alt="video" />
+        </div>
+      </div>
+
+      <center className={styles.work}>
+        <h2>How it works</h2>
+      </center>
+      <div className={styles.workContainer}>
+        <div className={styles.workInner}>
+          <Image src={"/one.png"} width={40} height={40} alt="one" />
+          <h2>Record Screen</h2>
+          <p>
+            Click the "Start Recording" button in our extension. choose which
+            part of your screen to capture and who you want to send it to.
+          </p>
+          <Image
+            className={styles.innerImage}
+            src={"/record.png"}
+            width={320}
+            height={200}
+            alt="record"
+          />
+        </div>
+        <div className={styles.workInner}>
+          <Image src={"/two.png"} width={40} height={40} alt="two" />
+          <h2>Share Your Recording</h2>
+          <p>
+            We generate a shareable link for your video. Simply send it to your
+            audience via email or copy the link to send via any platform.
+          </p>
+          <Image
+            className={styles.innerImage}
+            src={"/record.png"}
+            width={320}
+            height={200}
+            alt="record"
+          />
+        </div>
+        <div className={styles.workInner}>
+          <Image src={"/three.png"} width={40} height={40} alt="three" />
+          <h2>Learn Effortlessly</h2>
+          <p>
+            Recipients can access your video effortlessly through the provided
+            link, with our user-friendly interface suitable for everyone.
+          </p>
+          <Image
+            className={styles.innerImage}
+            src={"/record.png"}
+            width={320}
+            height={200}
+            alt="record"
+          />
+        </div>
       </div>
       <Footer />
     </div>
