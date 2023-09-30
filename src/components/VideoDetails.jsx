@@ -1,12 +1,11 @@
-"use client";
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./page.module.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Button, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 function VideoDetailsCard({ video }) {
