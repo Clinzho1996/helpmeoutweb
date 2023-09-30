@@ -34,7 +34,11 @@ function VideoDetailsCard() {
 
   // Check if 'videoUrl' exists and is not undefined
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className={styles.loading}>
+        <Image src="/loader.svg" alt="loading" width={100} height={100} />
+      </div>
+    );
   }
 
   return (
