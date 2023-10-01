@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import styles from "./page.module.css";
@@ -6,8 +7,13 @@ import Footer from "@/components/footer/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function Home() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   return (
     <div>
       <Navbar />
@@ -20,9 +26,15 @@ function Home() {
             Help your friends and loved ones by creating and sending videos on
             how to get things done on a website.
           </p>
-          <Link href="/register">
-            Install HelpMeOut <FaLocationArrow />
-          </Link>
+          {session?.user ? (
+            <Link href="/helpmeout.zip">
+              Install HelpMeOut <FaLocationArrow />
+            </Link>
+          ) : (
+            <Link href="/register">
+              Install HelpMeOut <FaLocationArrow />
+            </Link>
+          )}
         </div>
         <div className={styles.hero}>
           <div>

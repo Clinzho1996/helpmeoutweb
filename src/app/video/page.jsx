@@ -6,6 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import { FiSearch } from "react-icons/fi";
 import Footer from "@/components/footer/Footer";
+import Link from "next/link";
+import { FaLocationArrow } from "react-icons/fa";
 
 function Video() {
   const { data: session, status } = useSession();
@@ -35,6 +37,15 @@ function Video() {
             )}
           </div>
           <p>Here are your recorded videos</p>
+          {session?.user ? (
+            <Link href="/helpmeout.zip">
+              Install HelpMeOut <FaLocationArrow />
+            </Link>
+          ) : (
+            <Link href="/register">
+              Install HelpMeOut <FaLocationArrow />
+            </Link>
+          )}
         </div>
         <div>
           <form>
