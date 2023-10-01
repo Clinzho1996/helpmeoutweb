@@ -6,11 +6,11 @@ import Footer from "@/components/footer/Footer";
 import axios from "axios";
 import VideoDetailsCard from "@/components/VideoDetails";
 
-function VideoDetails() {
+function VideoDetails({ videoId }) {
   return (
     <div>
       <Navbar />
-      <VideoDetailsCard />
+      <VideoDetailsCard videoId="6518c09773dc92622b06a7ea" />
       <Footer />
     </div>
   );

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,28 +14,32 @@ function VideoDetailsCard() {
   const handleClose = () => setOpen(false);
   const [videoBlob, setVideoBlob] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef(null);
 
   const videoId = "6518c09773dc92622b06a7ea";
-
   useEffect(() => {
-    // Fetch video URL from the API
     axios
       .get(`https://vidrec.onrender.com/api/videos/${videoId}`, {
         responseType: "blob",
+        withCredentials: true,
       })
       .then((response) => {
-        const videoBlob = response.data;
+        const videoBlob = new Blob([response.data], { type: "video/webm" });
         console.log("Video Blob:", videoBlob);
 
-        setVideoBlob(blobUrl);
+        const videoUrl = URL.createObjectURL(videoBlob);
+
+        if (videoRef.current) {
+          videoRef.current.src = videoUrl;
+        }
+
         setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching video details:", error);
-        console.log(error);
         setIsLoading(false);
       });
-  }, []);
+  }, [videoId]);
 
   // Check if 'videoUrl' exists and is not undefined
   if (isLoading) {
@@ -45,8 +49,6 @@ function VideoDetailsCard() {
       </div>
     );
   }
-
-  console.log("Video Blob Final:", videoBlob);
 
   return (
     <div>
@@ -151,15 +153,9 @@ function VideoDetailsCard() {
           </div>
         </div>
         <div className={styles.video}>
-          {videoBlob ? (
-            <video
-              src={videoBlob}
-              controls
-              onError={(e) => console.error("Video error:", e)}
-            />
-          ) : (
-            <p>No video available</p>
-          )}
+          <video ref={videoRef} controls>
+            Your browser does not support the video tag.
+          </video>
           <h2>Transcript</h2>
         </div>
       </div>
