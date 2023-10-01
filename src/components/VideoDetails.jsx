@@ -8,31 +8,35 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
 import axios from "axios";
 
-function VideoDetailsCard() {
+function VideoDetailsCard({ params }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [videoBlob, setVideoBlob] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef(null);
+  const [videoUrl, setVideoUrl] = useState(null);
 
-  const videoId = "6518c09773dc92622b06a7ea";
+  const videoId = "651996a73ce7fe98b4943134";
+
   useEffect(() => {
+    // Fetch the video URL using Axios
     axios
-      .get(`https://vidrec.onrender.com/api/videos/${videoId}`, {
-        responseType: "blob",
-        withCredentials: true,
-      })
+      .get(
+        `https://lobster-app-q4dx3.ondigitalocean.app/api/videos/${videoId}`,
+        {
+          responseType: "json", // Make sure to request JSON response
+          withCredentials: true,
+        }
+      )
       .then((response) => {
-        const videoBlob = new Blob([response.data], { type: "video/webm" });
-        console.log("Video Blob:", videoBlob);
+        const videoUrl = response.data.url;
 
-        const videoUrl = URL.createObjectURL(videoBlob);
-
+        // Set the video URL as the src of the video element
         if (videoRef.current) {
           videoRef.current.src = videoUrl;
         }
 
+        setVideoUrl(videoUrl);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -40,15 +44,6 @@ function VideoDetailsCard() {
         setIsLoading(false);
       });
   }, [videoId]);
-
-  // Check if 'videoUrl' exists and is not undefined
-  if (isLoading) {
-    return (
-      <div className={styles.loading}>
-        <Image src="/loader.svg" alt="loading" width={100} height={100} />
-      </div>
-    );
-  }
 
   return (
     <div>
@@ -153,9 +148,13 @@ function VideoDetailsCard() {
           </div>
         </div>
         <div className={styles.video}>
-          <video ref={videoRef} controls>
-            Your browser does not support the video tag.
-          </video>
+          {isLoading ? (
+            <div className={styles.loading}>
+              <Image src="/loader.svg" alt="loading" width={100} height={100} />
+            </div>
+          ) : (
+            <video ref={videoRef} src={videoUrl} controls />
+          )}
           <h2>Transcript</h2>
         </div>
       </div>
