@@ -15,7 +15,7 @@ function VideoDetailsCard() {
   const [videoBlob, setVideoBlob] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const videoId = "6518b3e573dc92622b06a7cb";
+  const videoId = "6518c09773dc92622b06a7ea";
 
   useEffect(() => {
     // Fetch video URL from the API
@@ -24,11 +24,10 @@ function VideoDetailsCard() {
         responseType: "blob",
       })
       .then((response) => {
-        console.log("Response Status:", response.status);
-        console.log("Response Headers:", response.headers);
         const videoBlob = response.data;
         console.log("Video Blob:", videoBlob);
-        setVideoBlob(videoBlob);
+
+        setVideoBlob(blobUrl);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -153,10 +152,11 @@ function VideoDetailsCard() {
         </div>
         <div className={styles.video}>
           {videoBlob ? (
-            <video controls>
-              <source src={URL.createObjectURL(videoBlob)} type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
+            <video
+              src={videoBlob}
+              controls
+              onError={(e) => console.error("Video error:", e)}
+            />
           ) : (
             <p>No video available</p>
           )}
