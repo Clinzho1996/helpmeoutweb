@@ -15,19 +15,25 @@ function VideoDetailsCard() {
   const [videoBlob, setVideoBlob] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const videoId = "65180ebe13e8d9db68ab557f";
+  const videoId = "6518b3e573dc92622b06a7cb";
 
   useEffect(() => {
     // Fetch video URL from the API
     axios
-      .get(`https://vidrec.onrender.com/api/videos/${videoId}`)
+      .get(`https://vidrec.onrender.com/api/videos/${videoId}`, {
+        responseType: "blob",
+      })
       .then((response) => {
+        console.log("Response Status:", response.status);
+        console.log("Response Headers:", response.headers);
         const videoBlob = response.data;
+        console.log("Video Blob:", videoBlob);
         setVideoBlob(videoBlob);
         setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching video details:", error);
+        console.log(error);
         setIsLoading(false);
       });
   }, []);
@@ -40,6 +46,8 @@ function VideoDetailsCard() {
       </div>
     );
   }
+
+  console.log("Video Blob Final:", videoBlob);
 
   return (
     <div>
